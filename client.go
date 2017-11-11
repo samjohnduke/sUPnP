@@ -5,7 +5,7 @@ import (
 	"net"
 
 	"github.com/huin/goupnp"
-	"github.com/huin/goupnp/dcps/internetgateway1"
+	"github.com/huin/goupnp/dcps/internetgateway2"
 )
 
 // Client is the container client implmented by GoUPnP
@@ -119,12 +119,12 @@ func (igd *IGD) GetExternalIP() (string, error) {
 //Discover searches for a router on the network
 func Discover() (*IGD, error) {
 
-	pppclients, _, _ := internetgateway1.NewWANPPPConnection1Clients()
+	pppclients, _, _ := internetgateway2.NewWANPPPConnection1Clients()
 	if len(pppclients) > 0 {
 		return &IGD{pppclients[0]}, nil
 	}
 
-	ipclients, _, _ := internetgateway1.NewWANIPConnection1Clients()
+	ipclients, _, _ := internetgateway2.NewWANIPConnection1Clients()
 	if len(ipclients) > 0 {
 		return &IGD{ipclients[0]}, nil
 	}
